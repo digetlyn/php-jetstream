@@ -25,4 +25,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/items', function () {  //
+        return view('items');  //블레이드 파일도  items
+    })->name('items');   //라우터 이름도 items
+
+
+
+
 });
