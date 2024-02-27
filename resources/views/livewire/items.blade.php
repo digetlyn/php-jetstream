@@ -1,10 +1,18 @@
-<div class="p-6 sm:px-20 bg-while border-b border-gary-200">
+<div class="p-6 sm:px-20 bg-white border-b border-gary-200">
     <div class="mt-8 text-2xl">
     Items
     </div>  
     
 
     <div class="mt-6">
+        <div class="flex justify-between">
+         <div></div>
+            <div class="mr-2">
+                <input type="checkbox" class="mr-6 leading-tight " wire:model.live="active" /> 동작함
+            </div>
+
+        </div>
+            
         <table class="table-auto w-full">
             <thead>
                 <tr>
