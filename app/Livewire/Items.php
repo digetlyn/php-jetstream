@@ -18,9 +18,10 @@ class Items extends Component
             ->when($this->active, function($query) {
            // return $query->where('status',1);
            return $query->active();
-        })
-        ->paginate(10);
-        return view('livewire.items', compact('items'));  // compact() 여기에 ['items' => $items];  이렇게 넣어줘도 상관없다.
+        });
+     $query = $items->toSql();
+     $items = $items->paginate(10);
+        return view('livewire.items', compact('items','query'));  // compact() 여기에 ['items' => $items, 'query' => $query];  랑 같다... 이렇게 넣어줘도 상관없다.
     }
 
     public function updatingActive()

@@ -2,6 +2,8 @@
     <div class="mt-8 text-2xl">
     Items
     </div>  
+
+    <textarea name="query" id="query" cols="80" rows="1">{{ $query }}</textarea>
     
 
     <div class="mt-6">
