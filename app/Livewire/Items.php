@@ -11,7 +11,12 @@ class Items extends Component
     use WithPagination; //페이징 작업..
 
     public $active;
-    public $q;
+    public $q;  
+
+    protected $queryString = [   //검색된 내용의 주소창을 그대로 가지고 다른창에 복사해서 열었을때 같은 결과값 나오게끔.
+       'active'=> ['except' => false ],   //비어있는거는 굳이 표현 안하겠다. ['except=>false]
+        'q' => ['except'=>''],            //비어있는거는 굳이 표현 안하겠다. ['except=>'']
+    ];
 
     public function render()
     {

@@ -9,10 +9,10 @@
     <div class="mt-6">
         <div class="flex justify-between">
          <div>
-         <input type="search" id="q" name="q" wire:model.live.debounce.800ms ="q" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="검색어">
+         <input type="search" id="q" name="q" wire:model.live.debounce.800ms ="q" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="검색어" />
          </div>
             <div class="mr-2">
-                <input type="checkbox" class="mr-6 leading-tight " wire:model.live="active" /> 동작함
+                <input type="checkbox" class="mr-6 leading-tight " wire:model.live ="active" /> 동작함
             </div>
 
         </div>
