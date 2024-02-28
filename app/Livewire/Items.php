@@ -11,10 +11,18 @@ class Items extends Component
     use WithPagination; //페이징 작업..
 
     public $active;
+    public $q;
 
     public function render()
     {
         $items = Item::where('user_id',auth()->user()->id)
+            ->when($this->q,function($query){
+                return $query
+                ->where('name','like', '%'. $this->q .'%')  // name like '%'query% 비슷
+                ->orwhere('price','like', '%'. $this->q. '%');
+            })
+
+
             ->when($this->active, function($query) {
            // return $query->where('status',1);
            return $query->active();
@@ -25,6 +33,12 @@ class Items extends Component
     }
 
     public function updatingActive()
+    {
+        $this->resetPage();
+    }
+
+
+    public function updatingQ()
     {
         $this->resetPage();
     }
