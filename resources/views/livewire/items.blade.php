@@ -20,9 +20,15 @@
         <table class="table-auto w-full">
             <thead>
                 <tr>
-                    <th class="px-4 py-2"><div class="flex items-center">번호</div></th>
-                    <th class="px-4 py-2"><div class="flex items-center">이름</div></th>
-                    <th class="px-4 py-2"><div class="flex items-center">가격</div></th>                
+                    <th class="px-4 py-2"><div class="flex items-center">
+                        <button wire:click="sortBy('id')">번호</button>
+                    </div></th>
+                    <th class="px-4 py-2"><div class="flex items-center">
+                        <button wire:click="sortBy('name')">이름</button>
+                    </div></th>
+                    <th class="px-4 py-2"><div class="flex items-center">
+                        <button wire:click="sortBy('price')">가격</button>
+                    </div></th>
                     <th class="px-4 py-2">상태</th>
                     <th class="px-4 py-2">처리</th>
                 </tr>
