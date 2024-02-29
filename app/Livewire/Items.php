@@ -12,14 +12,16 @@ class Items extends Component
 {   
     use WithPagination; //페이징 작업..
 
-    public $active;
+    public $active = false;
     public $q;  
-    public $sortBy = 'id';
+    public $sort_by = 'id';
     public $sortAsc = true;
 
     protected $queryString = [   //검색된 내용의 주소창을 그대로 가지고 다른창에 복사해서 열었을때 같은 결과값 나오게끔.
-       'active'=> ['except' => false ],   //비어있는거는 굳이 표현 안하겠다. ['except=>false]
-        'q' => ['except'=>''],            //비어있는거는 굳이 표현 안하겠다. ['except=>'']
+       'active'=> ['keep' => false ],   //비어있는거는 굳이 표현 안하겠다. ['except=>false]
+        'q' => ['keep'=>''],            //비어있는거는 굳이 표현 안하겠다. ['except=>'']
+        'sort_by' => ['except' => 'id'],
+        'sortAsc' => ['except' => true]
     ];
 
     public function render()
@@ -34,7 +36,7 @@ class Items extends Component
            // return $query->where('status',1);
            return $query->active();
             })
-            ->orderBy($this->sortBy, $this->sortAsc ? 'ASC': 'DESC');
+            ->orderBy($this->sort_by, $this->sortAsc ? 'ASC': 'DESC');
             $query = $items->toSql();
             $items = $items->paginate(10);
 
@@ -55,11 +57,11 @@ class Items extends Component
 
     public function sortBy($field)
     {
-        if($field == $this->sortBy){
-            $this ->sortAsc =!$this ->sortAsc;
+        if($field == $this->sort_by){
+            $this ->sortAsc = !$this ->sortAsc;
         }else{
             $this->sortAsc = true;
         }
-        $this->sortBy = $field;
+        $this->sort_by = $field;
     }
 }
