@@ -16,6 +16,7 @@ class Items extends Component
     public $q;  
     public $sort_by = 'id';
     public $sortAsc = true;
+    public $confirmingItemDeletion = false;
 
     protected $queryString = [   //검색된 내용의 주소창을 그대로 가지고 다른창에 복사해서 열었을때 같은 결과값 나오게끔.
        'active'=> ['keep' => false ],   //비어있는거는 굳이 표현 안하겠다. ['except=>false]
@@ -63,5 +64,12 @@ class Items extends Component
             $this->sortAsc = true;
         }
         $this->sort_by = $field;
+    }
+
+
+    public function confirmItemDeletion($id)
+    {
+       // $item->delete();
+       $this->confirmingItemDeletion = $id;
     }
 }

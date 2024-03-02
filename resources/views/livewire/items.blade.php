@@ -40,7 +40,12 @@
                     <td class="border px-4 py-2">{{$item->name}}</td>
                     <td class="border px-4 py-2">{{number_format($item->price,2)}}</td>
                     <td class="border px-4 py-2">{{$item->status ? '동작':'동작안함'}}</td>
-                    <td class="border px-4 py-2">수정버튼 삭제버튼</td>
+                    <td class="border px-4 py-2">수정버튼 
+
+                    <x-danger-button wire:click="confirmItemDeletion( {{$item->id }} )" wire:loading.attr="disabled">
+                        삭제
+                    </x-danger-button>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -50,5 +55,29 @@
     <div class="mt-4">
     {{$items->links() }}
     </div>
+         <!-- Delete Item Confirmation Modal -->
+         <x-dialog-modal wire:model.live="confirmingItemDeletion">
+            <x-slot name="title">
+                {{ __('Delete Item') }}
+            </x-slot>
+
+            <x-slot name="content">
+                {{ __('삭제를 하시겠습니까?') }}
+
+
+                
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-secondary-button wire:click="$set('confirmingItemDeletion')" wire:loading.attr="disabled">
+                    {{ __('Cancel') }}
+                </x-secondary-button>
+
+                <x-danger-button class="ms-3" wire:click="deleteItem" wire:loading.attr="disabled">
+                    {{ __('Delete Item') }}
+                </x-danger-button>
+            </x-slot>
+        </x-dialog-modal>
+
 
 </div>
