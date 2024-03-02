@@ -22,12 +22,18 @@
                 <tr>
                     <th class="px-4 py-2"><div class="flex items-center">
                         <button wire:click="sortBy('id')">번호</button>
+                            <x-sort-icon sortField="id" :sort-by="$sort_by" :sort-asc="$sortAsc" />
+ 
+
                     </div></th>
                     <th class="px-4 py-2"><div class="flex items-center">
                         <button wire:click="sortBy('name')">이름</button>
+                            <x-sort-icon sortField="name" :sort-by="$sort_by" :sort-asc="$sortAsc" />
+                       
                     </div></th>
                     <th class="px-4 py-2"><div class="flex items-center">
                         <button wire:click="sortBy('price')">가격</button>
+                             <x-sort-icon sortField="price" :sort-by="$sort_by" :sort-asc="$sortAsc" />
                     </div></th>
                     <th class="px-4 py-2">상태</th>
                     <th class="px-4 py-2">처리</th>
