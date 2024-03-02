@@ -72,4 +72,10 @@ class Items extends Component
        // $item->delete();
        $this->confirmingItemDeletion = $id;
     }
+
+    public function deleteItem(Item $item)
+    {
+        $item->delete();
+        $this->confirmingItemDeletion = false;
+    }
 }

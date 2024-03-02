@@ -69,11 +69,11 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-secondary-button wire:click="$set('confirmingItemDeletion')" wire:loading.attr="disabled">
+                <x-secondary-button wire:click="$set('confirmingItemDeletion', false)" wire:loading.attr="disabled">
                     {{ __('Cancel') }}
                 </x-secondary-button>
 
-                <x-danger-button class="ms-3" wire:click="deleteItem" wire:loading.attr="disabled">
+                <x-danger-button class="ms-3" wire:click="deleteItem( {{$confirmingItemDeletion }} )" wire:loading.attr="disabled">
                     {{ __('Delete Item') }}
                 </x-danger-button>
             </x-slot>
