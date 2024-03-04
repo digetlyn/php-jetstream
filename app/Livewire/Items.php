@@ -14,9 +14,13 @@ class Items extends Component
 
     public $active = false;
     public $q;  
+    public $item;
+
     public $sort_by = 'id';
     public $sortAsc = true;
+
     public $confirmingItemDeletion = false;
+    public $confirmingItemAdd = false;
 
     protected $queryString = [   //검색된 내용의 주소창을 그대로 가지고 다른창에 복사해서 열었을때 같은 결과값 나오게끔.
        'active'=> ['keep' => false ],   //비어있는거는 굳이 표현 안하겠다. ['except=>false]
@@ -24,6 +28,13 @@ class Items extends Component
         'sort_by' => ['except' => 'id'],
         'sortAsc' => ['except' => true]
     ];
+
+    protected $rules = [
+        'item.name' => 'required|string|min:3',
+        'item.price' => 'require|numeric|between:1,100',
+        'item.status' => 'boolean'
+    ];
+
 
     public function render()
     {
@@ -78,4 +89,26 @@ class Items extends Component
         $item->delete();
         $this->confirmingItemDeletion = false;
     }
+
+
+
+    public function confirmAdd()
+    {
+        $this->reset(['item']);
+        $this->confirmingItemAdd = true;
+    }
+
+    public function saveItem()
+    {
+        $this->validate();
+
+            auth()->user()->items()-> create([
+                    'name' => $this->item['name'],
+                    'price' => $this->item['price'],
+                    'status'=> $this->item['status'] ?? 0
+                ]);
+                
+        $this->confirmingItemAdd = true;
+    }
+
 }
