@@ -101,7 +101,10 @@ class Items extends Component
 
     public function confirmItemEdit(Item $item)
     {
-        $this -> item = $item;
+        $this->item['id'] = $item->id;
+        $this->item['name'] = $item->name;
+        $this->item['price'] = $item->price;
+        $this->item['status'] = $item->status == 1 ? true :false;
         $this->confirmingItemAdd = true;
     }
 
@@ -111,11 +114,22 @@ class Items extends Component
     {
         $this->validate();
 
-            auth()->user()->items()-> create([
+        if(isset($this->item['id'])) {
+            auth()->user()->items()->where('id', $this->item['id'])->update([
+                'name' => $this->item['name'],
+                'price' => $this->item['price'],
+                'status' => $this->item['status'] ?? 0
+            ]);
+            session()->flash('message', '아이템이 성공적으로 수정되었습니다.');
+            }else{
+                auth()->user()->items()-> create([
                     'name' => $this->item['name'],
                     'price' => $this->item['price'],
                     'status'=> $this->item['status'] ?? 0
                 ]);
+            }
+
+            
                 
        $this->confirmingItemAdd = false;
     }

@@ -101,7 +101,7 @@
         <!-- Add Item Confirmation Modal -->
         <x-dialog-modal wire:model.live="confirmingItemAdd"> 
             <x-slot name="title">
-                {{ __('아이템 신규 등록') }}
+                {{ isset($this->item['id']) ? '아이템 수정' : '신규 아이템 등록' }}
             </x-slot>
 
             <x-slot name="content">
