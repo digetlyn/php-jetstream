@@ -88,6 +88,7 @@ class Items extends Component
     {
         $item->delete();
         $this->confirmingItemDeletion = false;
+        session()->flash('message', '아이템이 성공적으로 삭제되었습니다.');
     }
 
 
@@ -127,6 +128,7 @@ class Items extends Component
                     'price' => $this->item['price'],
                     'status'=> $this->item['status'] ?? 0
                 ]);
+                session()->flash('message', '아이템이 성공적으로 등록되었습니다.');
             }
 
             
