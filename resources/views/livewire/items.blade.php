@@ -55,7 +55,9 @@
                     <td class="border px-4 py-2">{{$item->name}}</td>
                     <td class="border px-4 py-2">{{number_format($item->price,2)}}</td>
                     <td class="border px-4 py-2">{{$item->status ? '동작':'동작안함'}}</td>
-                    <td class="border px-4 py-2">수정버튼 
+                    <td class="border px-4 py-2"> 
+
+                        <x-button wire:click="confirmItemEdit( {{$item->id }} )" wire:loading.attr="disabled">수정</x-button>
 
                     <x-danger-button wire:click="confirmItemDeletion( {{$item->id }} )" wire:loading.attr="disabled">
                         삭제
@@ -126,7 +128,7 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-secondary-button wire:click="$set('confirmingItemAdd',false)" wire:loading.attr="disabled">
+                <x-secondary-button wire:click="$set('confirmingItemAdd', false)" wire:loading.attr="disabled">
                     {{ __('취소') }}
                 </x-secondary-button>
 

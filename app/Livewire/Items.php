@@ -14,13 +14,13 @@ class Items extends Component
 
     public $active = false;
     public $q;  
-    public $item;
+    public $item = [];
 
     public $sort_by = 'id';
     public $sortAsc = true;
 
     public $confirmingItemDeletion = false;
-    public $confirmingItemAdd = false;
+    public $confirmingItemAdd  ;
 
     protected $queryString = [   //검색된 내용의 주소창을 그대로 가지고 다른창에 복사해서 열었을때 같은 결과값 나오게끔.
        'active'=> ['keep' => false ],   //비어있는거는 굳이 표현 안하겠다. ['except=>false]
@@ -31,7 +31,7 @@ class Items extends Component
 
     protected $rules = [
         'item.name' => 'required|string|min:3',
-        'item.price' => 'require|numeric|between:1,100',
+        'item.price' => 'required|numeric|between:1,100',
         'item.status' => 'boolean'
     ];
 
@@ -98,6 +98,15 @@ class Items extends Component
         $this->confirmingItemAdd = true;
     }
 
+
+    public function confirmItemEdit(Item $item)
+    {
+        $this -> item = $item;
+        $this->confirmingItemAdd = true;
+    }
+
+
+
     public function saveItem()
     {
         $this->validate();
@@ -108,7 +117,7 @@ class Items extends Component
                     'status'=> $this->item['status'] ?? 0
                 ]);
                 
-        $this->confirmingItemAdd = true;
+       $this->confirmingItemAdd = false;
     }
 
 }
